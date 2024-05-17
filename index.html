@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>XWs 1.0.1</h1>
+    </div>
+    <div class="login-container" id="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <div class="input-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <script>
+        // Seleciona os elementos que serão animados
+        const loginContainer = document.getElementById("login-container");
+        const headerTitle = document.querySelector(".header h1");
+
+        // Define a nova posição da área de login
+        const newLoginContainerPosition = window.innerWidth / 2 - 150; // Meio da página - metade da largura do contêiner
+
+        // Função para animar a área de login
+        function animateLogin() {
+            let currentPosition = 0;
+            const increment = 5; // Aumento do deslocamento em cada quadro da animação
+            const animationSpeed = 10; // Velocidade da animação em milissegundos
+
+            // Função que move a área de login gradualmente
+            function moveLogin() {
+                if (currentPosition < newLoginContainerPosition) {
+                    currentPosition += increment;
+                    loginContainer.style.left = currentPosition + "px";
+                    headerTitle.style.opacity = 1 - currentPosition / newLoginContainerPosition;
+                    setTimeout(moveLogin, animationSpeed);
+                }
+            }
+
+            // Inicia a animação
+            moveLogin();
+        }
+
+        // Inicia a animação quando a página carregar
+        animateLogin();
+    </script>
+</body>
+</html>

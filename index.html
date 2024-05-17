@@ -6,9 +6,84 @@
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://i.redd.it/uuunldy3tywa1.jpg') no-repeat center center fixed; /* Background da Mirage */
+            background-size: cover; /* Cobrir toda a área */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white; /* Texto branco */
+            font-size: 48px; /* Tamanho do título aumentado */
+            font-family: 'Playfair Display', serif; /* Fonte Vogue semelhante */
+        }
+
+        .login-container {
+            background-color: white; /* Área de login branca */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            color: #000000; /* Texto preto */
+            position: absolute;
+            left: -100%; /* Inicia fora da tela */
+            transition: left 1s; /* Animação de transição */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #000000; /* Texto preto */
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #000000; /* Texto preto */
+        }
+
+        .input-group input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 2px solid #007BFF; /* Borda azul mais forte */
+            border-radius: 5px;
+            color: #000000; /* Texto preto */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul para realce */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF; /* Botão azul */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
+    <div class="header" id="header">
         <h1>XWs 1.0.1</h1>
     </div>
     <div class="login-container" id="login-container">
@@ -29,29 +104,16 @@
     <script>
         // Seleciona os elementos que serão animados
         const loginContainer = document.getElementById("login-container");
-        const headerTitle = document.querySelector(".header h1");
+        const header = document.getElementById("header");
 
-        // Define a nova posição da área de login
-        const newLoginContainerPosition = window.innerWidth / 2 - 150; // Meio da página - metade da largura do contêiner
+        // Move a área de login e o título para o centro da tela
+        loginContainer.style.left = "calc(50% - 150px)"; // Largura da tela dividida por 2 - metade da largura da área de login
+        header.style.marginLeft = "calc(50% - 24px)"; // Largura da tela dividida por 2 - metade da largura do título
 
         // Função para animar a área de login
         function animateLogin() {
-            let currentPosition = 0;
-            const increment = 5; // Aumento do deslocamento em cada quadro da animação
-            const animationSpeed = 10; // Velocidade da animação em milissegundos
-
-            // Função que move a área de login gradualmente
-            function moveLogin() {
-                if (currentPosition < newLoginContainerPosition) {
-                    currentPosition += increment;
-                    loginContainer.style.left = currentPosition + "px";
-                    headerTitle.style.opacity = 1 - currentPosition / newLoginContainerPosition;
-                    setTimeout(moveLogin, animationSpeed);
-                }
-            }
-
-            // Inicia a animação
-            moveLogin();
+            loginContainer.style.left = "calc(50% - 150px)"; // Largura da tela dividida por 2 - metade da largura da área de login
+            header.style.marginLeft = "calc(50% - 24px)"; // Largura da tela dividida por 2 - metade da largura do título
         }
 
         // Inicia a animação quando a página carregar
